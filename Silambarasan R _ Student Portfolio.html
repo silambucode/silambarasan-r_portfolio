@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silambarasan R - Student Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066cc;
+            --secondary-color: #00d4ff;
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #ff6b6b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1535 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 102, 204, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            right: 10%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 102, 204, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 5%;
+            animation: float 4s ease-in-out infinite reverse;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 102, 204, 0.3);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0 3rem;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            text-align: center;
+        }
+
+        .info-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--secondary-color);
+            background: transparent;
+            color: var(--secondary-color);
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: var(--dark-bg);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: var(--card-bg);
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .skill-item i {
+            color: var(--secondary-color);
+            margin-right: 0.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat {
+            background: rgba(0, 102, 204, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Certificates Section */
+        .certificates {
+            padding: 5rem 0;
+        }
+
+        .certificate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .certificate-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .certificate-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .certificate-info {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .certificate-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .certificate-issuer {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-desc {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .certificate-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Projects/Experience Section */
+        .experience {
+            padding: 5rem 0;
+            background: var(--card-bg);
+            margin: 3rem 0;
+            border-radius: 10px;
+        }
+
+        .experience-list {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-item {
+            padding: 2rem;
+            background: rgba(0, 212, 255, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-desc {
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(20px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-info {
+                gap: 1.5rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .certificate-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-code"></i> Portfolio
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-avatar">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <h1>Silambarasan R</h1>
+            <p class="subtitle">Computer Science Engineering Student</p>
+            
+            <div class="hero-info">
+                <div class="info-item">
+                    <div class="info-label">College</div>
+                    <div class="info-value">Excel Engineering College</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Branch</div>
+                    <div class="info-value">CSE</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Batch</div>
+                    <div class="info-value">2023-2027</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#certificates" class="btn btn-primary">View Certificates</a>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3>Hi, I'm Silambarasan</h3>
+                    <p>I'm a passionate CS student at Excel Engineering College, dedicated to exploring emerging technologies and building innovative solutions. I'm particularly interested in Augmented Reality, Virtual Reality, and Machine Learning applications.</p>
+                    <p>Currently pursuing my degree (2023-2027), I actively participate in technical workshops, competitions, and hands-on learning experiences to enhance my programming and problem-solving skills.</p>
+                    <p>I believe in continuous learning and staying updated with the latest industry trends. My goal is to leverage technology to create meaningful impact in the digital world.</p>
+                    
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <i class="fas fa-laptop-code"></i> Programming
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cube"></i> AR/VR
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-brain"></i> Machine Learning
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i> Databases
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Certifications</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Skills</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2023</div>
+                        <div class="stat-label">Started</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="certificates" id="certificates">
+        <div class="container">
+            <h2 class="section-title">Certifications & Achievements</h2>
+            <div class="certificate-grid">
+                <!-- Certificate 1 -->
+                <div class="certificate-card" data-aos="fade-up">
+                    <div class="certificate-image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #001a4d 0%, #003d99 100%); display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-vr-cardboard" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3 style="font-size: 1.2rem;">AR/VR Workshop</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificate-info">
+                        <div class="certificate-name">AR/VR: Creating Immersive Experience</div>
+                        <div class="certificate-issuer">KPR Institute of Engineering and Technology</div>
+                        <div class="certificate-desc">Workshop on Augmented Reality and Virtual Reality technologies during NETRIX '25 - A National Level Technical Fest</div>
+                        <div class="certificate-date">
+                            <i class="fas fa-calendar"></i> 07/02/2025
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="certificate-card" data-aos="fade-up">
+                    <div class="certificate-image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1a5f9a 0%, #2d8fc9 100%); display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-brain" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3 style="font-size: 1.2rem;">ML with Python</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificate-info">
+                        <div class="certificate-name">Machine Learning with Python</div>
+                        <div class="certificate-issuer">IBM & Coursera</div>
+                        <div class="certificate-desc">Comprehensive course on Machine Learning fundamentals using Python. Learn supervised and unsupervised learning algorithms.</div>
+                        <div class="certificate-date">
+                            <i class="fas fa-calendar"></i> Oct 8, 2025
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wadhwani Foundation -->
+                <div class="certificate-card" data-aos="fade-up">
+                    <div class="certificate-image">
+                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #003d5c 0%, #006b99 100%); display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center; color: white;">
+                                <i class="fas fa-award" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <h3 style="font-size: 1.2rem;">Wadhwani Cert</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certificate-info">
+                        <div class="certificate-name">Wadhwani Foundation Achievement</div>
+                        <div class="certificate-issuer">Wadhwani Foundation</div>
+                        <div class="certificate-desc">Recognition for participation and excellence in technical training programs and workshops organized by Wadhwani Foundation.</div>
+                        <div class="certificate-date">
+                            <i class="fas fa-certificate"></i> 2025
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">Learning Journey</h2>
+            <div class="experience-list">
+                <div class="experience-item" data-aos="fade-right">
+                    <div class="experience-title">NETRIX '25 - National Technical Fest</div>
+                    <div class="experience-meta">
+                        <i class="fas fa-calendar"></i> Feb 2025 | KPR Institute
+                    </div>
+                    <div class="experience-desc">Participated in Workshop on AR/VR: Creating Immersive Experience. Learned cutting-edge technologies in augmented and virtual reality development.</div>
+                </div>
+
+                <div class="experience-item" data-aos="fade-right">
+                    <div class="experience-title">Machine Learning Course</div>
+                    <div class="experience-meta">
+                        <i class="fas fa-calendar"></i> Oct 2025 | Coursera & IBM
+                    </div>
+                    <div class="experience-desc">Successfully completed comprehensive Machine Learning certification with Python. Mastered supervised learning, unsupervised learning, and practical ML applications.</div>
+                </div>
+
+                <div class="experience-item" data-aos="fade-right">
+                    <div class="experience-title">Academic Excellence</div>
+                    <div class="experience-meta">
+                        <i class="fas fa-graduation-cap"></i> 2023-2027 | Excel Engineering College
+                    </div>
+                    <div class="experience-desc">Pursuing BE in Computer Science and Engineering with focus on emerging technologies, problem-solving, and practical implementation skills.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-muted);">Feel free to reach out to me through any of these channels</p>
+            
+            <div class="social-links">
+                <a href="https://linkedin.com" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:silamburamesh027@gmail.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://twitter.com" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 2rem; background: rgba(0, 212, 255, 0.05); border-radius: 10px; border: 1px solid rgba(0, 212, 255, 0.2);">
+                <p style="color: var(--text-muted);">
+                    <i class="fas fa-map-marker-alt" style="color: var(--secondary-color);"></i> Excel Engineering College, Namakkal<br>
+                    <i class="fas fa-envelope" style="color: var(--secondary-color);"></i> silamburamesh027@gmail.com<br>
+                    <i class="fas fa-phone" style="color: var(--secondary-color);"></i> +91 9952707836
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Silambarasan R. All rights reserved. | Excel Engineering College, CSE Batch 2023-2027</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Built with <i class="fas fa-heart" style="color: var(--accent);"></i> using HTML, CSS & JavaScript</p>
+        </div>
+    </footer>
+
+    <!-- AOS Library for Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(0, 102, 204, 0.2)';
+            } else {
+                nav.style.boxShadow = '0 2px 20px rgba(0, 102, 204, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
